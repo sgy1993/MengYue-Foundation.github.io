@@ -152,6 +152,200 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-mybatis环境搭建详细步骤" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/07/02/mybatis%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E8%AF%A6%E7%BB%86%E6%AD%A5%E9%AA%A4/">mybatis环境搭建详细步骤.md</a>
+    </h1>
+  
+
+        
+        <a href="/2021/07/02/mybatis%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E8%AF%A6%E7%BB%86%E6%AD%A5%E9%AA%A4/" class="archive-article-date">
+  	<time datetime="2021-07-02T12:25:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[TOC]</p>
+<h1 id="一-mybatis环境搭建详细步骤"><a href="#一-mybatis环境搭建详细步骤" class="headerlink" title="一. mybatis环境搭建详细步骤"></a>一. mybatis环境搭建详细步骤</h1><h2 id="1-创建数据库的-sql-脚本-数据库是-day42，-account表"><a href="#1-创建数据库的-sql-脚本-数据库是-day42，-account表" class="headerlink" title="1. 创建数据库的 sql 脚本, 数据库是 day42， account表"></a>1. 创建数据库的 sql 脚本, 数据库是 day42， account表</h2><p><strong>exam.sql</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">SQLyog Ultimate v12.5.0 (64 bit)</span></span><br><span class="line"><span class="comment">MySQL - 5.7.26 : Database - day42</span></span><br><span class="line"><span class="comment">*********************************************************************</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*!40101 SET NAMES utf8 */</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*!40101 SET SQL_MODE=&#x27;&#x27;*/</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */</span>;</span><br><span class="line"><span class="comment">/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */</span>;</span><br><span class="line"><span class="comment">/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE=&#x27;NO_AUTO_VALUE_ON_ZERO&#x27; */</span>;</span><br><span class="line"><span class="comment">/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */</span>;</span><br><span class="line"><span class="keyword">CREATE</span> DATABASE <span class="comment">/*!32312 IF NOT EXISTS*/</span>`day42` <span class="comment">/*!40100 DEFAULT CHARACTER SET utf8 */</span>;</span><br><span class="line"></span><br><span class="line">USE `day42`;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*Table structure for table `account` */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> IF <span class="keyword">EXISTS</span> `account`;</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> `account` (</span><br><span class="line">  `id` <span class="type">int</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> AUTO_INCREMENT,</span><br><span class="line">  `name` <span class="type">varchar</span>(<span class="number">50</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  `money` <span class="keyword">double</span> <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  <span class="keyword">PRIMARY</span> KEY (`id`)</span><br><span class="line">) ENGINE<span class="operator">=</span>InnoDB AUTO_INCREMENT<span class="operator">=</span><span class="number">5</span> <span class="keyword">DEFAULT</span> CHARSET<span class="operator">=</span>utf8;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*Data for the table `account` */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span>  <span class="keyword">into</span> `account`(`id`,`name`,`money`) <span class="keyword">values</span> </span><br><span class="line">(<span class="number">1</span>,<span class="string">&#x27;tom&#x27;</span>,<span class="number">1000</span>),</span><br><span class="line">(<span class="number">2</span>,<span class="string">&#x27;jerry&#x27;</span>,<span class="number">1000</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*!40101 SET SQL_MODE=@OLD_SQL_MODE */</span>;</span><br><span class="line"><span class="comment">/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */</span>;</span><br><span class="line"><span class="comment">/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */</span>;</span><br><span class="line"><span class="comment">/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>数据库的 数据：</p>
+<p><img src="/2021/07/02/mybatis%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E8%AF%A6%E7%BB%86%E6%AD%A5%E9%AA%A4/image-20210702202323081.png" alt="image-20210702202323081"></p>
+<h2 id="2-创建个maven工程，在模块上右键，-JBLJavaToWeb"><a href="#2-创建个maven工程，在模块上右键，-JBLJavaToWeb" class="headerlink" title="2. 创建个maven工程，在模块上右键， JBLJavaToWeb"></a>2. 创建个maven工程，在模块上右键， JBLJavaToWeb</h2><p><img src="/2021/07/02/mybatis%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E8%AF%A6%E7%BB%86%E6%AD%A5%E9%AA%A4/image-20210702175407192.png" alt="image-20210702175407192"></p>
+<h2 id="3-pom-xml-引入坐标，-mysql-数据库的驱动，mybatis-框架-junit-单元测试"><a href="#3-pom-xml-引入坐标，-mysql-数据库的驱动，mybatis-框架-junit-单元测试" class="headerlink" title="3. pom.xml 引入坐标， mysql 数据库的驱动，mybatis 框架, junit 单元测试"></a>3. pom.xml 引入坐标， mysql 数据库的驱动，mybatis 框架, junit 单元测试</h2><p><strong>pom.xml</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--Mybatis相关--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.1.6<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.5.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.12<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="4-创建实体类-Account"><a href="#4-创建实体类-Account" class="headerlink" title="4. 创建实体类 Account"></a>4. 创建实体类 Account</h2><p><strong>Account.java</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.itheima.domain;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Account</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">double</span> money;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(Integer id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">getMoney</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> money;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setMoney</span><span class="params">(<span class="keyword">double</span> money)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.money = money;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Account&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;id=&quot;</span> + id +</span><br><span class="line">                <span class="string">&quot;, name=&#x27;&quot;</span> + name + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&quot;, money=&quot;</span> + money +</span><br><span class="line">                <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-编写Dao-接口，-AccountDao"><a href="#5-编写Dao-接口，-AccountDao" class="headerlink" title="5. 编写Dao 接口， AccountDao"></a>5. 编写Dao 接口， AccountDao</h2><p><strong>AccountDao.java</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.itheima.dao;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">AccountDao</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;Account&gt; <span class="title">findAll</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-编写-Dao-映射文件，-AccountDao-xml"><a href="#6-编写-Dao-映射文件，-AccountDao-xml" class="headerlink" title="6. 编写 Dao 映射文件， AccountDao.xml"></a>6. 编写 Dao 映射文件， AccountDao.xml</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">mapper</span> <span class="meta-keyword">PUBLIC</span> <span class="meta-string">&quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span> <span class="meta-string">&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">&quot;com.itheima.dao.AccountDao&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;findAll&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;com.itheima.domain.Account&quot;</span>&gt;</span></span><br><span class="line">        select * from account</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="1-如果是-maven-工程，-AccountDao-xml-映射文件-一定要-放在-resources-同级目录下-命名的时候-记得-目录分隔符是-而不是-package用的是"><a href="#1-如果是-maven-工程，-AccountDao-xml-映射文件-一定要-放在-resources-同级目录下-命名的时候-记得-目录分隔符是-而不是-package用的是" class="headerlink" title="1. 如果是 maven 工程， AccountDao.xml 映射文件 一定要 放在 resources 同级目录下, 命名的时候 记得 目录分隔符是 / 而不是 . (package用的是 .)"></a>1. 如果是 maven 工程， AccountDao.xml 映射文件 一定要 放在 resources 同级目录下, 命名的时候 记得 目录分隔符是 <code>/</code> 而不是 <code>.</code> (package用的是 .)</h3><p><img src="/2021/07/02/mybatis%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E8%AF%A6%E7%BB%86%E6%AD%A5%E9%AA%A4/image-20210702200759417.png" alt="image-20210702200759417"></p>
+<h2 id="7-编写-mybatis-主配置文件-mybatis-config-xml"><a href="#7-编写-mybatis-主配置文件-mybatis-config-xml" class="headerlink" title="7. 编写 mybatis 主配置文件, mybatis-config.xml"></a>7. 编写 mybatis 主配置文件, <strong>mybatis-config.xml</strong></h2><p>使用到的 jdbc.properties 文件</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">jdbc.driver</span>=<span class="string">com.mysql.jdbc.Driver</span></span><br><span class="line"><span class="meta">jdbc.url</span>=<span class="string">jdbc:mysql://localhost:3306/day42</span></span><br><span class="line"><span class="meta">jdbc.username</span>=<span class="string">root</span></span><br><span class="line"><span class="meta">jdbc.password</span>=<span class="string">root</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="1-mybatis-config-xml-主要配置了-什么？"><a href="#1-mybatis-config-xml-主要配置了-什么？" class="headerlink" title="1. mybatis-config.xml  主要配置了 什么？"></a>1. <strong>mybatis-config.xml</strong>  主要配置了 什么？</h3><ol>
+<li>加载 jdbc.properties 连接 mysql 数据库</li>
+<li><code>&lt;typeAliases&gt;</code>在使用 parameterType 和 resultType 属性的时候 使用别名</li>
+<li>扫描映射文件， 根据接口 扫描到 同名的 接口名.xml  文件</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">configuration</span> <span class="meta-keyword">PUBLIC</span> <span class="meta-string">&quot;-//mybatis.org//DTD Config 3.0//EN&quot;</span> <span class="meta-string">&quot;http://mybatis.org/dtd/mybatis-3-config.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--加载外部文件--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">properties</span> <span class="attr">resource</span>=<span class="string">&quot;jdbc.properties&quot;</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    <span class="comment">&lt;!--使用 &lt;typeAliases&gt; 标签指定别名，parameterType， resultType 都需要写 全限定类名， 写了别名之后，不区分大小写 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">typeAliases</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">&quot;com.itheima.domain&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">typeAliases</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--数据库环境--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">environments</span> <span class="attr">default</span>=<span class="string">&quot;mysql&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">environment</span> <span class="attr">id</span>=<span class="string">&quot;mysql&quot;</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--事务管理--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">&quot;JDBC&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">transactionManager</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--连接池--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">&quot;POOLED&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;driver&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;jdbc.driver&#125;&quot;</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;url&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;jdbc.url&#125;&quot;</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;jdbc.username&#125;&quot;</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;jdbc.password&#125;&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">environment</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">environments</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 映射关系的 配置</span></span><br><span class="line"><span class="comment">    1. 根据映射文件 在类路径下的位置查找</span></span><br><span class="line"><span class="comment">        &lt;mapper resource=&quot;com/itheima/dao/AccountDao.xml&quot;&gt;&lt;/mapper&gt;</span></span><br><span class="line"><span class="comment">    2. 通过接口的方式查找配置文件，要求：接口名和映射文件保持一致，并且在同一个包下</span></span><br><span class="line"><span class="comment">        &lt;mapper class=&quot;com.itheima.dao.AccountDao&quot;&gt;&lt;/mapper&gt;</span></span><br><span class="line"><span class="comment">    3. 扫描接口所在的包</span></span><br><span class="line"><span class="comment">        &lt;package name=&quot;com.itheima.dao&quot;&gt;&lt;/package&gt;</span></span><br><span class="line"><span class="comment">    注意事项：如果是 maven工程，AccountDao.xml 的路径必须在 com\itheima\dao\AccountDao.xml</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--扫描映射文件--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">&quot;com.itheima.dao&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="8-编写-测试-类"><a href="#8-编写-测试-类" class="headerlink" title="8. 编写 测试 类"></a>8. 编写 测试 类</h2><h3 id="1-mybatis-怎么获取-到-AccountDao-实现的-子类对象-通过-sqlSession-getMapper-AccountDao-class-获取"><a href="#1-mybatis-怎么获取-到-AccountDao-实现的-子类对象-通过-sqlSession-getMapper-AccountDao-class-获取" class="headerlink" title="1. mybatis 怎么获取 到 AccountDao 实现的 子类对象, 通过 sqlSession.getMapper(AccountDao.class) 获取"></a>1. mybatis 怎么获取 到 AccountDao 实现的 子类对象, 通过 sqlSession.getMapper(AccountDao.class) 获取</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获得Dao代理对象</span></span><br><span class="line">AccountDao accountDao = sqlSession.getMapper(AccountDao.class);</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.itheima.dao;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.itheima.domain.Account;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.io.Resources;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSession;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSessionFactory;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSessionFactoryBuilder;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestMyBatis</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test1</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="comment">//加载配置文件</span></span><br><span class="line">        InputStream is = Resources.getResourceAsStream(<span class="string">&quot;mybatis-config.xml&quot;</span>);</span><br><span class="line">        <span class="comment">//构建SqlSessionFactory工厂</span></span><br><span class="line">        SqlSessionFactory sqlSessionFactory = <span class="keyword">new</span> SqlSessionFactoryBuilder().build(is);</span><br><span class="line">        <span class="comment">//获取sqlSession对象</span></span><br><span class="line">        SqlSession sqlSession = sqlSessionFactory.openSession();</span><br><span class="line">        <span class="comment">//获得Dao代理对象</span></span><br><span class="line">        AccountDao accountDao = sqlSession.getMapper(AccountDao.class);</span><br><span class="line">        <span class="comment">//执行findAll方法</span></span><br><span class="line">        List&lt;Account&gt; list = accountDao.findAll();</span><br><span class="line">        <span class="comment">//循环遍历</span></span><br><span class="line">        <span class="keyword">for</span> (Account account : list) &#123;</span><br><span class="line">            System.out.println(account);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>运行的结果：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Account&#123;id=<span class="number">1</span>, name=<span class="string">&#x27;tom&#x27;</span>, money=<span class="number">1000.7</span>&#125;</span><br><span class="line">Account&#123;id=<span class="number">2</span>, name=<span class="string">&#x27;jack&#x27;</span>, money=<span class="number">12433.56</span>&#125;</span><br><span class="line">Account&#123;id=<span class="number">5</span>, name=<span class="string">&#x27;rose&#x27;</span>, money=<span class="number">12345.78</span>&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">mybatis框架</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">mybatis环境搭建</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/java相关//" class="article-tag-list-link color2">java相关</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/07/02/mybatis%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E8%AF%A6%E7%BB%86%E6%AD%A5%E9%AA%A4/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-java中lambda表达式的省略规则" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/06/22/java%E4%B8%ADlambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E7%9C%81%E7%95%A5%E8%A7%84%E5%88%99/">java中lambda表达式的省略规则</a>
+    </h1>
+  
+
+        
+        <a href="/2021/06/22/java%E4%B8%ADlambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E7%9C%81%E7%95%A5%E8%A7%84%E5%88%99/" class="archive-article-date">
+  	<time datetime="2021-06-22T01:07:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/06/22/java%E4%B8%ADlambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E7%9C%81%E7%95%A5%E8%A7%84%E5%88%99/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-人为什么要接受教育" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -172,7 +366,79 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>asdhajsd</p>
+        <p>以前我问过我妈，我说：“我为什么要读书啊？”</p>
+<p>我妈：“不读书就没有出息！”，然后她又补充了一句，“没有文化就只能干苦力，有了学历就可以坐在办公室里”</p>
+<p>我依然对这个问题感到困惑！</p>
+<p>我妈又问我：“你想种地吗？”</p>
+<p>我：“不想，好辛苦啊！”</p>
+<p>我妈：“你要是不好好念，将来就只能回家种地，养猪”</p>
+<p>所以我对读书（受教育）的理解就是 我不想回家种地，我也不知道我为什么要读书，但是我知道我不想种地，</p>
+<p>所以我能考上大学的原因是源自我的恐惧。</p>
+<p>我觉得这是一个接受教育的理由，起码你还不明确自己要干什么的时候，可以有时间去思考这个问题。</p>
+<p>我不用早早的步入社会，开始思考如何谋生，如何掌握一项技能</p>
+<p>但是我觉得这不是一个好理由</p>
+<p>我和大师姐讨论起来这个问题，我问她：“你以前有想过自己为什么要读书吗？”</p>
+<p>“上大学以前没有想过，就觉得有学上就不用再去地里干活啊！”</p>
+<p>“是吗？ 你那么讨厌去地里干活吗？”</p>
+<p>你爱一个人，是因为你想爱，</p>
+<p>表达爱 的时候，我们通常说我在乎你，在乎你是一种既满足自我 道德需求的，或者说免于良知或者真我，或者夜深人静的时候，一种源自外在道德的谴责，尽管很多人不坦诚，但是外在的道德约束确实能限制或者告诉人们应该如何选择，</p>
+<p>但我认为爱应该是纯粹的</p>
+<p>求知欲，或者说好奇心也应该是纯粹的，或者说它本来的面目就是纯粹的</p>
+<p>我们人为的给 圆满的求知欲打上了标签 比如 求知欲的表象就是 上进心，富有知识，这些表象又进一步表现为了成功，财富，功名</p>
+<p>接收教育不应该是 某种动机的手段</p>
+<p>我认为人的内心深处存在一个真我的意识，它是强大的，它也是完美的，王阳明觉得它是良知，西方哲学认为那是真我</p>
+<p>我觉得良知有一种 词汇层面上来自道德的压力，所以我觉得真我这个词汇更加贴切，感觉上也更加的自由</p>
+<p>因为短暂的迷失自我，</p>
+<p>绝对的理性会导致绝对的冷漠</p>
+<p>用理性来约束感性，用感性来超越理性</p>
+<p>我现在站在一个具备独立思考的人格再去审视当年提出这个问题的我，我是否具备回答这个问题的资格，或者说，我现在是否能够明白人为什么药接收教育，坦白说，我还是没有办法去明确这个问题的答案，或者提供更好的建议，我时常会为为自己的无知和愚蠢感到生气，我也时常为自己能够意识到自己的无知而感到骄傲和庆幸，因为我坦诚的面对了自己的无知，也不会去要求别人一定要做到什么东西</p>
+<p>就像我忽然对以前这个问题，感到释怀，不是我妈不想回答我，而是她回答不了我，因为她自己内心也没有答案，她的答案只能解决她的人生疑问，</p>
+<p>脑海中的意识 转化为 语言 还有 一个明确的过程，很多人可能有这样的意识，但是却不知道怎么表达</p>
+<p>你爱一个人，并不代表你会表达怎么去爱一个人</p>
+<p>我们绝大多数人应该认同，父母是爱孩子的，但是并不代表父母无时无刻都能够让你觉得爱他</p>
+<p>人很喜欢把自己的的担心和焦虑 以爱之名 强加到你身上，那一刻你感受到的不是爱，而是来自于“爱”的压力</p>
+<p>我不认为 爱 一个人，很爱一个人 ，很在乎一个人是一种值的推崇的行为或者价值观，反而我认为这是一种自我认同，自我迷茫，自我的缺失，</p>
+<p>通过爱一个人 来弥补这种自我的缺失</p>
+<p>我认为爱人应该先爱己，这话听着就很容易遭受一部分人自然而然的抵触和反感</p>
+<p>我时常好奇他们的底层逻辑到底是什么? 是因为“你凭什么这么自私，你不能这么自私，我也需要你爱”</p>
+<p>这是一种在捍卫 自己被关心，被理解的权利吗》我认为是的，我也捍卫你被关心的权利，</p>
+<p>但是我认为 爱自己 和 自私是有区别的，虽然它很难界定，也很容易被缺乏关心的人所攻击</p>
+<p>学会爱自己 并不代表否定你被关心的权利，也并不代表否定了你的付出，它和别人无关，是一种关乎自我的对话。</p>
+<p>我们太过强调自我，反而会忽略了自我</p>
+<p>追问 为什么要接受教育 这个问题，我其实并没有太好的答案，我尝试回想我为什么会有这个疑问，</p>
+<p>真是因为我不想念书吗，还是因为我其实是在表达 另外一个层面上的需求，不想念书只是表象，是因为一些深层次的需求没有得到满足，然后诉诸于一些表象需求，来进行掩盖，或者得到满足吗？</p>
+<p>是不是我更应该关注到这些更本质的需求，不想念书的问题自然而然解决，</p>
+<p>我太过关注比表面需求，反而忽略了本质性的需求，导致他对读书本身这件发自内心的行为更加排斥</p>
+<p>因为求知欲是天性，或者真我的自带属性，或者说好奇心，他不需要帮助，也不需要引导，或者说，即便不通过读书，人自己也会去求知，因为这是自发的</p>
+<p>念好书是因为能够得到我妈的认可，这是一种安全感的需要吗？</p>
+<p>我把自己当成自己思想的试验品</p>
+<p>读书是获取知识，满足求知欲比较好的方式，但是不是唯一的方式，读书的目的</p>
+<p>我们一直以一种正向的逻辑在思考问题，</p>
+<p>目标就是目标，是人为赋予了目标意义，是赋予了没有达到目标的意义</p>
+<p>很多时候，我给人的感觉像是对社会有什么不满意或者危害分子，但是我是相信，人性本善，或者人生下来是一块白板，是我们这个社会，是受到的教育，价值观给白板上了颜色，</p>
+<p>人在压抑自我的时候，反而接受不了别人去解放自己，甚至会去要求被人跟她一样被压抑</p>
+<p>我认为真实是会造成伤害，这伤害也是源自于之前的不坦诚，这是前因，也是接下来坦诚需要接受的后果，但是相比较坦诚和真实带来的短暂伤害和不信任，</p>
+<p>真实带来的自由和淤积在心头的那颗大石头会让你如释重负，真实的感觉远比 </p>
+<p>我对你好是因为我在乎你，是因为关心你让我自己感觉很好，也让你感觉很好，这是一个大家双赢的稳定局面</p>
+<p>而不是一方 裹持着它 要求你必须这样做，被要求这么做的那一方会感受到不真实，不是发自内心，受到来自外界的压力，</p>
+<p>往往要求你这么做的一方的人，往往是一些自己首先不能知行合一的人，并且还拿一套相当高的标准去限制你的人，你的父母固然也会使用这套价值观来影响你，但是真正关心你的占比也会比那些键盘侠</p>
+<p>我的观点是 真实不会带来伤害，不真实才会</p>
+<p>我喜欢叔本华关于人生的本质是痛苦的这个定义</p>
+<p>我也喜欢尼采关于世界的本质是权利的定义</p>
+<p>我接纳这个不是因为我觉得我的人生就不幸福，或者我就觉得人生很痛苦，我跟别人分享的时候，别人老会问我，你怎么这么消极？</p>
+<p>因为我觉得，人感知幸福的能力要比感知的</p>
+<p>接收痛苦，反而能让我自己去理解别人，也更理解自己，反而也更能体会和感知幸福，因为幸福是短暂的，痛苦是实实在在的，不是时间长短，而是感知层面上的长短</p>
+<p>注意，我一直强调的是个人层面上，一套观点，并不一定要普适所有人，但是他一定要适合自己，</p>
+<p>我们一直在强调 健康，积极，乐观是好的，生病，消极，悲观是不好的，</p>
+<p>因为夏天对绝大多数人是好的，所以你会因为你喜爱夏天，就要失去四季吗？</p>
+<p>求同存异，价值的多元化，才构成了这个世界丰富多彩，你的意识形态，你自己相信什么很重要</p>
+<p>你所需要的经历会在整个人类历史长河上无数次的重复经历，你的不自由，你的束缚</p>
+<p>对于你自己来说，真理是什么不重要，重要的是你相信什么是真理</p>
+<p>什么是对的不重要，对你来说，什么是对的才重要，也就是说，你愿意相信什么？？</p>
+<p>给予了每一个人去想像自己的天空该是什么颜色，它给予了每一个人去想像什么是未来的可能性，并不一定每一个都是对的，但是他并没有褫夺</p>
+<p>生活虽然没有给予你唯一的答案，可是它赋予了你万千可能。</p>
+<p>这封信不知道从什么时候开始说起，想说的东西忽然觉得太多了，想表达的东西也太多了。</p>
+<p>2020 年 10月多，</p>
 
       
 
@@ -410,6 +676,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">人生的意义</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">mybatis框架</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">mybatis环境搭建</a>
               </li>
             
             <div class="clearfix"></div>
